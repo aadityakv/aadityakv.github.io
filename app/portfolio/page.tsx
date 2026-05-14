@@ -6,6 +6,7 @@ type Project = {
   blurb: string;
   tags: string[];
   href?: string;
+  year?: string;
 };
 
 const projects: Project[] = [
@@ -13,16 +14,19 @@ const projects: Project[] = [
     title: "Project One",
     blurb: "Placeholder — replace with a real project description.",
     tags: ["TypeScript", "Infra"],
+    year: "2026",
   },
   {
     title: "Project Two",
     blurb: "Placeholder — replace with a real project description.",
     tags: ["Python", "ML"],
+    year: "2025",
   },
   {
     title: "Project Three",
     blurb: "Placeholder — replace with a real project description.",
     tags: ["Distributed Systems"],
+    year: "2024",
   },
 ];
 
@@ -30,48 +34,61 @@ export default function PortfolioPage() {
   return (
     <div>
       <PageTitle
-        eyebrow="Portfolio"
-        title="Things I've built"
-        subtitle="A small collection of projects worth sharing."
+        eyebrow="Work"
+        title="Things I've"
+        emphasis="built."
+        subtitle="A short selection. Some are shipped, some are sketches I keep returning to."
       />
-      <div className="grid gap-4 sm:grid-cols-2">
+      <ol className="divide-y divide-rule border-y border-rule">
         {projects.map((project, i) => (
           <Section key={project.title} delay={0.05 * i}>
-            <ProjectCard project={project} />
+            <ProjectRow project={project} index={i + 1} />
           </Section>
         ))}
-      </div>
+      </ol>
     </div>
   );
 }
 
-function ProjectCard({ project }: { project: Project }) {
+function ProjectRow({ project, index }: { project: Project; index: number }) {
   const inner = (
-    <div className="glass group relative h-full overflow-hidden rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.07]">
-      <div className="flex items-start justify-between gap-3">
-        <h3 className="text-lg font-medium text-white">{project.title}</h3>
-        {project.href && (
-          <span className="text-ink-400 transition-transform group-hover:translate-x-0.5 group-hover:text-white">↗</span>
-        )}
+    <div className="group grid grid-cols-[2.5rem_1fr_auto] items-baseline gap-x-6 py-7 transition-colors hover:bg-card/40">
+      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-faint">
+        {String(index).padStart(2, "0")}
+      </span>
+      <div className="min-w-0">
+        <h3 className="text-xl text-ink">
+          {project.title}
+          {project.href && (
+            <span className="ml-2 inline-block text-ink-faint transition-transform group-hover:translate-x-0.5 group-hover:text-accent-soft">
+              ↗
+            </span>
+          )}
+        </h3>
+        <p className="mt-1.5 text-sm text-ink-dim">{project.blurb}</p>
+        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[11px] uppercase tracking-[0.18em] text-ink-faint">
+          {project.tags.map((tag, i) => (
+            <span key={tag}>
+              {tag}
+              {i < project.tags.length - 1 && <span className="ml-3 text-ink-faint/40">·</span>}
+            </span>
+          ))}
+        </div>
       </div>
-      <p className="mt-2 text-sm text-ink-300">{project.blurb}</p>
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {project.tags.map((tag) => (
-          <span
-            key={tag}
-            className="rounded-full border border-white/10 bg-white/5 px-2 py-0.5 font-mono text-[11px] text-ink-200"
-          >
-            {tag}
-          </span>
-        ))}
-      </div>
+      <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-faint">
+        {project.year}
+      </span>
     </div>
   );
-  return project.href ? (
-    <a href={project.href} target="_blank" rel="noreferrer" className="block h-full">
-      {inner}
-    </a>
-  ) : (
-    inner
+  return (
+    <li>
+      {project.href ? (
+        <a href={project.href} target="_blank" rel="noreferrer" className="block">
+          {inner}
+        </a>
+      ) : (
+        inner
+      )}
+    </li>
   );
 }

@@ -7,15 +7,14 @@
 }
 
 html, body {
-  background: #06060a;
-  color: #ededf0;
+  background: #0a0a0b;
+  color: #ece8df;
 }
 
 body {
+  /* very faint warm vignette, no rainbow */
   background-image:
-    radial-gradient(60% 40% at 20% 10%, rgba(124,92,255,0.18), transparent 60%),
-    radial-gradient(40% 35% at 90% 0%, rgba(0,180,255,0.12), transparent 60%),
-    radial-gradient(50% 45% at 80% 90%, rgba(255,80,180,0.10), transparent 60%);
+    radial-gradient(120% 80% at 50% -10%, rgba(232, 154, 74, 0.05), transparent 60%);
   background-attachment: fixed;
 }
 
@@ -24,32 +23,35 @@ body {
   image-rendering: crisp-edges;
 }
 
-.glass {
-  background: rgba(20, 20, 28, 0.55);
-  backdrop-filter: blur(14px) saturate(140%);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid rgba(255,255,255,0.06);
+/* Subtle underline grow on hover for inline links */
+.link {
+  position: relative;
+  color: inherit;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: color 200ms ease;
 }
+.link:hover { color: #f1bf85; }
 
-.gradient-text {
-  background: linear-gradient(90deg, #a48bff 0%, #5cd8ff 50%, #ff7ad6 100%);
-  background-size: 200% 200%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientPan 8s ease-in-out infinite;
-}
-
-@keyframes gradientPan {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+/* Decorative rule with center notch */
+.rule {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #23232a 20%, #23232a 80%, transparent);
 }
 
 ::selection {
-  background: rgba(124,92,255,0.4);
+  background: rgba(232, 154, 74, 0.3);
   color: #fff;
 }
 
-a {
-  text-decoration: none;
+a { text-decoration: none; }
+
+/* Reduce motion if user prefers */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

@@ -6,39 +6,41 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["ui-sans-serif", "system-ui", "-apple-system", "Segoe UI", "Roboto", "sans-serif"],
+        serif: [
+          "var(--font-serif)",
+          "Iowan Old Style",
+          "Apple Garamond",
+          "Baskerville",
+          "Times New Roman",
+          "serif",
+        ],
+        sans: [
+          "ui-sans-serif",
+          "system-ui",
+          "-apple-system",
+          "Segoe UI",
+          "Helvetica Neue",
+          "sans-serif",
+        ],
         mono: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
       },
       colors: {
+        paper: "#0a0a0b",
+        card: "#121214",
         ink: {
-          50: "#f7f7f8",
-          100: "#ededf0",
-          200: "#d6d6dc",
-          300: "#b1b1bb",
-          400: "#84848f",
-          500: "#5a5a64",
-          600: "#41414a",
-          700: "#2e2e35",
-          800: "#1c1c21",
-          900: "#0e0e12",
-          950: "#06060a",
+          DEFAULT: "#ece8df",
+          dim: "#9a9690",
+          faint: "#5a5853",
         },
+        rule: "#23232a",
         accent: {
-          DEFAULT: "#7c5cff",
-          glow: "#a48bff",
+          DEFAULT: "#e89a4a",
+          soft: "#f1bf85",
         },
       },
-      boxShadow: {
-        glow: "0 0 60px -10px rgba(124,92,255,0.45)",
-      },
-      animation: {
-        "gradient-pan": "gradientPan 12s ease infinite",
-      },
-      keyframes: {
-        gradientPan: {
-          "0%, 100%": { backgroundPosition: "0% 50%" },
-          "50%": { backgroundPosition: "100% 50%" },
-        },
+      letterSpacing: {
+        tightish: "-0.012em",
+        tighter2: "-0.025em",
       },
     },
   },

@@ -8,24 +8,32 @@ export default function BlogIndex() {
   return (
     <div>
       <PageTitle
-        eyebrow="Blog"
-        title="Writing"
-        subtitle="Notes and longer-form pieces. Rare, but earnest."
+        eyebrow="Writing"
+        title="Notes,"
+        emphasis="rarely."
+        subtitle="When I do write, it lives here. Mostly engineering, sometimes adjacent."
       />
-      <ul className="space-y-3">
+      <ul className="divide-y divide-rule border-y border-rule">
         {posts.map((post, i) => (
           <Section key={post.slug} delay={0.04 * i}>
             <li>
-              <Link
-                href={`/blog/${post.slug}`}
-                className="glass group block rounded-2xl p-5 transition-all hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.07]"
-              >
+              <Link href={`/blog/${post.slug}`} className="group block py-7 transition-colors hover:bg-card/40">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="text-base font-medium text-white">{post.title}</h3>
-                  <time className="shrink-0 font-mono text-xs text-ink-400">{post.date}</time>
+                  <time className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-faint">
+                    {post.date}
+                  </time>
+                  <span
+                    aria-hidden
+                    className="font-mono text-ink-faint transition-all group-hover:translate-x-1 group-hover:text-accent-soft"
+                  >
+                    →
+                  </span>
                 </div>
+                <h3 className="mt-2 text-xl text-ink transition-colors group-hover:text-accent-soft">
+                  {post.title}
+                </h3>
                 {post.excerpt && (
-                  <p className="mt-1 text-sm text-ink-300">{post.excerpt}</p>
+                  <p className="mt-1.5 max-w-xl text-sm text-ink-dim">{post.excerpt}</p>
                 )}
               </Link>
             </li>
