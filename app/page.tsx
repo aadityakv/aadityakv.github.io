@@ -44,14 +44,14 @@ export default function HomePage() {
 
       <div className="rule" />
 
-      {/* Wayfinding — three numbered entries, varied typography */}
+      {/* Wayfinding — numbered entries, varied typography */}
       <Section delay={0.1}>
         <div className="mb-8 flex items-baseline justify-between">
           <h2 className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-dim">
             Sections
           </h2>
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink-faint">
-            03
+            04
           </span>
         </div>
         <ul className="divide-y divide-rule border-y border-rule">
@@ -72,6 +72,12 @@ export default function HomePage() {
             href="/resume"
             title="Résumé"
             blurb="Roles, in order."
+          />
+          <NavRow
+            num="04"
+            href="/pacman"
+            title="Play"
+            blurb="A small pacman minigame."
           />
         </ul>
       </Section>

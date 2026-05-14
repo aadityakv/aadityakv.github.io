@@ -8,6 +8,7 @@ const links = [
   { href: "/portfolio", label: "Work" },
   { href: "/blog", label: "Writing" },
   { href: "/resume", label: "Resume" },
+  { href: "/pacman", label: "Play" },
 ];
 
 export default function Nav() {
